@@ -1,18 +1,19 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
+import MyContext from '../context/MyContext';
 
 // import { Container } from './styles';
 
-const User: React.FC = ({navigation, route}: any) => {
-  const user = route.params.user;
+const User: React.FC = ({navigation}: any) => {
+  const {user}: any = useContext(MyContext);
 
   return (
     <View>
       <Text>{user.name}</Text>
 
       <TouchableOpacity
-        onPress={() => navigation.navigate('EditUser', {user})}
+        onPress={() => navigation.navigate('EditUser')}
         style={{
           backgroundColor: 'red',
           height: 30,

@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
+import MyContext from '../context/MyContext';
 
 interface IUser {
   name: string;
@@ -13,11 +14,11 @@ const userDaApi = {
 };
 
 const Home: React.FC = ({navigation}: any) => {
-  const [user, setUser] = useState<IUser>();
+  const {user, setUser}: any = useContext(MyContext);
 
   useEffect(() => {
     setTimeout(() => setUser(userDaApi), 1500);
-  }, []);
+  }, [setUser]);
 
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>

@@ -1,11 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {View, TextInput, Text, TouchableOpacity} from 'react-native';
+import MyContext from '../context/MyContext';
 
 const EditUser: React.FC = ({navigation}: any) => {
-  // const user = route.params.user;
+  const {user, setUser}: any = useContext(MyContext);
 
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(user.name);
 
   return (
     <View>
@@ -13,6 +14,7 @@ const EditUser: React.FC = ({navigation}: any) => {
 
       <TouchableOpacity
         onPress={() => {
+          setUser({...user, name: value});
           navigation.goBack();
         }}
         style={{
